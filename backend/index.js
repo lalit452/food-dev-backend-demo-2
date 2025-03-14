@@ -20,7 +20,7 @@ app.use(express.json());
 connectDB();
 
 app.use(cors({
-    origin: "https://food-dev-frontend-demo-2.vercel.app/",
+    origin: "https://food-dev-frontend-demo-2.vercel.app",
     credentials: true
 }));
 

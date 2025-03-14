@@ -1,44 +1,89 @@
-import express from "express"
-import cors from "cors"
+// import express from "express"
+// import cors from "cors"
+// import { connectDB } from "./config/db.js";
+// import foodRouter from "./routes/foodRoute.js";
+// import userRouter from "./routes/userRoute.js";
+// import "dotenv/config.js"
+// // import cartRouter from "./routes/cartRoute.js";
+
+
+// // /app config
+// const app = express()
+// const port = 4000;
+
+
+
+// // middleware
+// app.use(express.json());
+ 
+// //db connection
+// connectDB();
+
+// app.use(cors({
+//     origin: "https://food-dev-frontend-demo-2.vercel.app/",
+//     credentials: true
+// }));
+
+// // api end points
+// app.get("/", (req, res) => {
+//     res.send("Server is running on Vercel!");
+//   });
+
+// app.use("/api/food", foodRouter)
+// app.use("/images", express.static("uploads"))
+// app.use("/api/user",userRouter)
+// // app.use("/api/cart",cartRouter)
+
+// // app.use((req, res, next) => {
+// //     console.log(`Received ${req.method} request to ${req.url}`);
+// //     next();
+// // });
+
+// // app.get("/",(req,res)=>{
+// //     res.send("API Working")
+// // })
+
+// app.listen(port, ()=>{
+//     console.log(`Server Started on http://localhost:${port}`)
+// })
+
+
+import express from "express";
+import cors from "cors";
 import { connectDB } from "./config/db.js";
 import foodRouter from "./routes/foodRoute.js";
 import userRouter from "./routes/userRoute.js";
-import "dotenv/config.js"
-// import cartRouter from "./routes/cartRoute.js";
+import "dotenv/config.js";
 
+// App config
+const app = express();
 
-// /app config
-const app = express()
-const port = 4000;
-
-
-
-// middleware
+// Middleware
 app.use(express.json());
- 
-//db connection
+
+// DB connection
 connectDB();
 
-app.use(cors({
+app.use(
+  cors({
     origin: "https://food-dev-frontend-demo-2.vercel.app/",
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 
-// api end points
-app.use("/api/food", foodRouter)
-app.use("/images", express.static("uploads"))
-app.use("/api/user",userRouter)
-// app.use("/api/cart",cartRouter)
+// API endpoints
+app.get("/", (req, res) => {
+  res.send("Server is running on Vercel!");
+});
 
-// app.use((req, res, next) => {
-//     console.log(`Received ${req.method} request to ${req.url}`);
-//     next();
+app.use("/api/food", foodRouter);
+app.use("/images", express.static("uploads"));
+app.use("/api/user", userRouter);
+
+// ❌ REMOVE THIS (Vercel doesn't need `listen`)
+// app.listen(4000, () => {
+//   console.log(`Server Started on http://localhost:4000`);
 // });
 
-app.get("/",(req,res)=>{
-    res.send("API Working")
-})
-
-app.listen(port, ()=>{
-    console.log(`Server Started on http://localhost:${port}`)
-})
+// ✅ EXPORT the app for Vercel
+export default app;

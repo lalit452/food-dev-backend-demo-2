@@ -20,6 +20,11 @@ app.use(cors());
 //db connection
 connectDB();
 
+app.use(cors({
+    origin: "https://food-dev-frontend-demo-2.vercel.app/",
+    credentials: true
+}));
+
 // api end points
 app.use("/api/food", foodRouter)
 app.use("/images", express.static("uploads"))

@@ -34,6 +34,11 @@ app.use("/images", express.static("uploads"))
 app.use("/api/user",userRouter)
 // app.use("/api/cart",cartRouter)
 
+console.log("Environment Variables:");
+console.log("JWT_SECRET:", process.env.JWT_SECRET);
+console.log("PORT:", process.env.PORT);
+
+
 // app.use((req, res, next) => {
 //     console.log(`Received ${req.method} request to ${req.url}`);
 //     next();
